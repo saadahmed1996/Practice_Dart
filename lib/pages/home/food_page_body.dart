@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_application/pages/food/recommended_food_detail.dart';
 import 'package:restaurant_application/utils/colors.dart';
 import 'package:restaurant_application/widgets/bigtext.dart';
 import 'package:restaurant_application/widgets/icon_plus_text.dart';
 import 'package:restaurant_application/widgets/smalltext.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+
+import '../food/popular_food_detail.dart';
 
 class FoodPageBody extends StatefulWidget {
   const FoodPageBody({Key? key}) : super(key: key);
@@ -21,19 +24,29 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     return Column(
       children: [
         //Slider Section
-        Container(
-          //For debuging purpose.
-          //color: Colors.redAccent,
-          height: 320,
-          //Using page view to build a slider.
-          child: PageView.builder(
-            controller: pageController,
-            //this defines how many slides an app can have.
-            itemCount: 5,
-            //Item builder takes two parameters context or the index.
-            itemBuilder: ((context, index) {
-              return _buildVerticalPageItem(index);
-            }),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PopularFoodDetail(),
+              ),
+            );
+          },
+          child: Container(
+            //For debuging purpose.
+            //color: Colors.redAccent,
+            height: 320,
+            //Using page view to build a slider.
+            child: PageView.builder(
+              controller: pageController,
+              //this defines how many slides an app can have.
+              itemCount: 5,
+              //Item builder takes two parameters context or the index.
+              itemBuilder: ((context, index) {
+                return _buildVerticalPageItem(index);
+              }),
+            ),
           ),
         ),
         //Dots
@@ -79,72 +92,82 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             shrinkWrap: true,
             itemCount: 10,
             itemBuilder: (context, index) {
-              return Container(
-                margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
-                child: Row(
-                  children: [
-                    //Image section.
-                    Container(
-                      width: 120,
-                      height: 120,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.white38,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage('assets/image/food0.png'),
-                        ),
-                      ),
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RecommendedFoodDetail(),
                     ),
-                    //Food detail on left side.
-                    //Expanded widget takes all the available space.
-                    Expanded(
-                      child: Container(
-                        height: 100,
+                  );
+                },
+                child: Container(
+                  margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
+                  child: Row(
+                    children: [
+                      //Image section.
+                      Container(
+                        width: 120,
+                        height: 120,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(20),
-                            bottomRight: Radius.circular(20),
-                          ),
-                          color: Colors.white,
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 10, right: 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              BigText(text: 'Mutton Handi'),
-                              SizedBox(height: 10),
-                              SmallText(text: 'With all characteristics'),
-                              SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  IconPlusText(
-                                    text: 'Normal',
-                                    icon: Icons.circle_sharp,
-                                    iconColor: CustomColors.mainAppColor,
-                                  ),
-                                  IconPlusText(
-                                    text: '1.7km',
-                                    icon: Icons.location_on,
-                                    iconColor: CustomColors.mainAppColor,
-                                  ),
-                                  IconPlusText(
-                                    text: '12min',
-                                    icon: Icons.access_time_rounded,
-                                    iconColor: CustomColors.mainAppColor,
-                                  ),
-                                ],
-                              ),
-                            ],
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white38,
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage('assets/image/food0.png'),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                      //Food detail on left side.
+                      //Expanded widget takes all the available space.
+                      Expanded(
+                        child: Container(
+                          height: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              bottomRight: Radius.circular(20),
+                            ),
+                            color: Colors.white,
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 10, right: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                BigText(text: 'Mutton Handi'),
+                                SizedBox(height: 10),
+                                SmallText(text: 'With all characteristics'),
+                                SizedBox(height: 10),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    IconPlusText(
+                                      text: 'Normal',
+                                      icon: Icons.circle_sharp,
+                                      iconColor: CustomColors.mainAppColor,
+                                    ),
+                                    IconPlusText(
+                                      text: '1.7km',
+                                      icon: Icons.location_on,
+                                      iconColor: CustomColors.mainAppColor,
+                                    ),
+                                    IconPlusText(
+                                      text: '12min',
+                                      icon: Icons.access_time_rounded,
+                                      iconColor: CustomColors.mainAppColor,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               );
             }),
@@ -200,7 +223,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   const SizedBox(height: 10),
                   //2nd section of the 2nd container.
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Wrap(
                         children: List.generate(
