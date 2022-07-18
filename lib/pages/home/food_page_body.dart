@@ -5,7 +5,6 @@ import 'package:restaurant_application/widgets/bigtext.dart';
 import 'package:restaurant_application/widgets/icon_plus_text.dart';
 import 'package:restaurant_application/widgets/smalltext.dart';
 import 'package:dots_indicator/dots_indicator.dart';
-
 import '../food/popular_food_detail.dart';
 
 class FoodPageBody extends StatefulWidget {
