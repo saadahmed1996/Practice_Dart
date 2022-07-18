@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_application/utils/colors.dart';
 import 'package:restaurant_application/widgets/bigtext.dart';
 import 'package:restaurant_application/widgets/smalltext.dart';
-
 import 'food_page_body.dart';
 
 class MainBody extends StatelessWidget {
