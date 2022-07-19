@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:restaurant_application/pages/food/popular_food_detail.dart';
 import 'package:restaurant_application/pages/food/recommended_food_detail.dart';
 import 'package:restaurant_application/pages/home/main_food_body.dart';
