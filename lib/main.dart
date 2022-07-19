@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_application/pages/food/popular_food_detail.dart';
-import 'package:restaurant_application/pages/food/recommended_food_detail.dart';
 import 'package:restaurant_application/pages/home/bottom_navigation/bottom_navgivation_bar.dart';
-import 'package:restaurant_application/pages/home/main_food_body.dart';
 
 void main() {
   runApp(const MyApp());

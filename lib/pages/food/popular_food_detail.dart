@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_application/utils/colors.dart';
+import 'package:restaurant_application/utils/dimensions.dart';
 import 'package:restaurant_application/widgets/app_icon.dart';
 import 'package:restaurant_application/widgets/bigtext.dart';
 import 'package:restaurant_application/widgets/icon_plus_text.dart';
@@ -19,7 +20,7 @@ class PopularFoodDetail extends StatelessWidget {
             right: 0,
             child: Container(
               width: double.maxFinite,
-              height: 350,
+              height: Responsive.height(45, context),
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/image/food0.png'),
@@ -53,7 +54,7 @@ class PopularFoodDetail extends StatelessWidget {
             bottom: 5,
             //Content Container for food details
             child: Container(
-              height: 350,
+              height: Responsive.height(60, context),
               width: double.maxFinite,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
@@ -68,7 +69,7 @@ class PopularFoodDetail extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     BigText(text: 'Sindhi Mutton Biryani Masala'),
-                    SizedBox(height: 10),
+                    SizedBox(height: Responsive.height(1.2, context)),
                     Row(
                       children: [
                         Wrap(
@@ -81,15 +82,15 @@ class PopularFoodDetail extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(width: 10),
+                        SizedBox(width: Responsive.width(4, context)),
                         SmallText(text: '4.5'),
-                        const SizedBox(width: 10),
+                        SizedBox(width: Responsive.width(4, context)),
                         SmallText(text: '1297'),
-                        const SizedBox(width: 10),
+                        SizedBox(width: Responsive.width(4, context)),
                         SmallText(text: 'Comments'),
                       ],
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: Responsive.height(3.5, context)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -110,9 +111,9 @@ class PopularFoodDetail extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: Responsive.height(3.5, context)),
                     BigText(text: 'Food Detail:'),
-                    SizedBox(height: 10),
+                    SizedBox(height: Responsive.height(3.5, context)),
                     SmallText(
                         text:
                             'Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'),
@@ -127,7 +128,7 @@ class PopularFoodDetail extends StatelessWidget {
             left: 0,
             bottom: 0,
             child: Container(
-              height: 100,
+              height: Responsive.height(15, context),
               width: double.maxFinite,
               margin: EdgeInsets.only(
                 right: 10,
@@ -140,11 +141,12 @@ class PopularFoodDetail extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    height: 50,
-                    width: 100,
+                    height: Responsive.height(8.5, context),
+                    width: Responsive.width(30, context),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       color: Colors.white38,
+                      //white38
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -165,8 +167,8 @@ class PopularFoodDetail extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    height: 50,
-                    width: 150,
+                    height: Responsive.height(9, context),
+                    width: Responsive.width(40, context),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       color: CustomColors.mainAppColor,

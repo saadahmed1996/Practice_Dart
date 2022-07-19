@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_application/utils/colors.dart';
+import 'package:restaurant_application/utils/dimensions.dart';
 import 'package:restaurant_application/widgets/app_icon.dart';
 import 'package:restaurant_application/widgets/bigtext.dart';
 import 'package:restaurant_application/widgets/smalltext.dart';
@@ -17,7 +18,7 @@ class RecommendedFoodDetail extends StatelessWidget {
             right: 0,
             left: 0,
             child: Container(
-              height: 350,
+              height: Responsive.height(40, context),
               width: double.maxFinite,
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -51,7 +52,7 @@ class RecommendedFoodDetail extends StatelessWidget {
             right: 0,
             bottom: 20,
             child: Container(
-              height: 350,
+              height: Responsive.height(60, context),
               width: double.maxFinite,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
@@ -65,7 +66,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 child: Column(
                   children: [
                     BigText(text: 'Afghani Boti'),
-                    SizedBox(height: 10),
+                    SizedBox(height: Responsive.height(1.6, context)),
                     SmallText(text: 'Enjoy these at any time at any moment'),
                   ],
                 ),
@@ -78,7 +79,7 @@ class RecommendedFoodDetail extends StatelessWidget {
             right: 55,
             bottom: 90,
             child: Container(
-              height: 50,
+              height: Responsive.height(12, context),
               // width: 50,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -92,12 +93,12 @@ class RecommendedFoodDetail extends StatelessWidget {
                     iconColor: Colors.white,
                     backgroundColor: CustomColors.mainAppColor,
                   ),
-                  SizedBox(width: 10),
+                  SizedBox(width: Responsive.width(2.5, context)),
                   BigText(
                     text: '\$ 32 X 0',
                     color: Colors.black,
                   ),
-                  SizedBox(width: 10),
+                  SizedBox(width: Responsive.width(2.5, context)),
                   AppIcon(
                     icon: Icons.add_rounded,
                     size: 24,
@@ -114,18 +115,21 @@ class RecommendedFoodDetail extends StatelessWidget {
             right: 0,
             left: 0,
             child: Container(
-              height: 100,
+              height: Responsive.height(13, context),
               width: double.maxFinite,
-              decoration: BoxDecoration(),
+              decoration: BoxDecoration(
+                color: Colors.white,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    height: 50,
-                    width: 50,
+                    height: Responsive.height(8, context),
+                    width: Responsive.width(14, context),
                     margin: EdgeInsets.only(left: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
+                      color: Colors.white,
                     ),
                     child: AppIcon(
                       icon: Icons.favorite,
@@ -133,8 +137,8 @@ class RecommendedFoodDetail extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    height: 50,
-                    width: 150,
+                    height: Responsive.height(8.5, context),
+                    width: Responsive.width(40, context),
                     margin: EdgeInsets.only(right: 10),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
