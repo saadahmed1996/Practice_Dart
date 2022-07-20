@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_application/pages/authentication/sign_in.dart';
 import 'package:restaurant_application/utils/colors.dart';
 import 'package:restaurant_application/utils/dimensions.dart';
 import 'package:restaurant_application/widgets/bigtext.dart';
@@ -17,10 +18,14 @@ class MainBody extends StatelessWidget {
           Container(
             child: Container(
               decoration: BoxDecoration(
-                // color: Colors.redAccent,
-              ),
-              margin: EdgeInsets.only(top: Responsive.height(7.5, context), bottom: Responsive.height(4.5, context)),
-              padding: EdgeInsets.only(left: Responsive.height(2.5, context), right: Responsive.height(2.5, context)),
+                  // color: Colors.redAccent,
+                  ),
+              margin: EdgeInsets.only(
+                  top: Responsive.height(7.5, context),
+                  bottom: Responsive.height(4.5, context)),
+              padding: EdgeInsets.only(
+                  left: Responsive.height(2.5, context),
+                  right: Responsive.height(2.5, context)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

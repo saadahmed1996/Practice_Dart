@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_application/pages/authentication/sign_in.dart';
 
 import 'package:restaurant_application/pages/food/popular_food_detail.dart';
 import 'package:restaurant_application/pages/food/recommended_food_detail.dart';
@@ -19,6 +20,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     MainBody(),
     PopularFoodDetail(),
     RecommendedFoodDetail(),
+    SignIn(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           BottomNavigationBarItem(
             icon: AppIcon(
               icon: Icons.home,
-              size: 24,
+              size: 20,
               iconColor: CustomColors.mainAppColor,
             ),
             label: 'Home',
@@ -39,7 +41,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           BottomNavigationBarItem(
             icon: AppIcon(
               icon: Icons.circle,
-              size: 24,
+              size: 20,
               iconColor: CustomColors.mainAppColor,
             ),
             label: 'Recommended',
@@ -47,10 +49,18 @@ class _BottomNavBarState extends State<BottomNavBar> {
           BottomNavigationBarItem(
             icon: AppIcon(
               icon: Icons.business,
-              size: 24,
+              size: 20,
               iconColor: CustomColors.mainAppColor,
             ),
             label: 'Popular',
+          ),
+          BottomNavigationBarItem(
+            icon: AppIcon(
+              icon: Icons.person,
+              size: 20,
+              iconColor: CustomColors.mainAppColor,
+            ),
+            label: 'Sign In',
           ),
         ],
         selectedLabelStyle: TextStyle(fontSize: 15),

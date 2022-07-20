@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_application/pages/home/bottom_navigation/bottom_navgivation_bar.dart';
 
+import 'pages/authentication/sign_in.dart';
+import 'pages/authentication/sign_up.dart';
+
 void main() {
   runApp(const MyApp());
 }
