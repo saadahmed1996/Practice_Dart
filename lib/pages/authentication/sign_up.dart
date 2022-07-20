@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_application/pages/authentication/sign_up.dart';
-import 'package:restaurant_application/pages/home/bottom_navigation/bottom_navgivation_bar.dart';
-import 'package:restaurant_application/pages/home/main_food_body.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:restaurant_application/utils/colors.dart';
 import 'package:restaurant_application/utils/dimensions.dart';
-import 'package:restaurant_application/widgets/bigtext.dart';
 import 'package:restaurant_application/widgets/smalltext.dart';
 import 'package:restaurant_application/widgets/textField.dart';
 
-class SignIn extends StatelessWidget {
-  const SignIn({Key? key}) : super(key: key);
+class SignUp extends StatelessWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,40 +25,13 @@ class SignIn extends StatelessWidget {
               ),
             ),
           ),
-          //Container for welcome heading
-          Container(
-            width: double.maxFinite,
-            margin: EdgeInsets.only(left: 20, right: 20),
-            decoration: BoxDecoration(
-                //color: Colors.yellowAccent,
-                ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: Responsive.height(1.5, context),
-                ),
-                BigText(
-                  text: 'W e l c o m e',
-                  size: Responsive.height(10, context),
-                ),
-                SmallText(
-                  text: 'Sign into your account',
-                  size: Responsive.height(3.5, context),
-                  color: Colors.black38,
-                ),
-              ],
-            ),
-          ),
-
           //Container for text field.
           Container(
             margin: EdgeInsets.only(
-              top: Responsive.height(1, context),
               left: Responsive.height(3, context),
               right: Responsive.height(3, context),
             ),
-            height: Responsive.height(18, context),
+            height: Responsive.height(36, context),
             decoration: BoxDecoration(
                 //color: Colors.redAccent,
                 ),
@@ -69,38 +39,40 @@ class SignIn extends StatelessWidget {
               children: [
                 CustomTextField(
                     isPassword: false,
-                    text: 'Enter Your Name',
-                    icon: Icons.person,
-                    hintText: 'Enter Your Name'),
+                    text: 'Enter Your Email',
+                    icon: Icons.email,
+                    hintText: 'Enter Your Email'),
                 SizedBox(
                   height: Responsive.height(1, context),
                 ),
                 CustomTextField(
-                  isPassword: true,
-                  text: 'Enter Your Password',
-                  icon: Icons.lock,
-                  hintText: 'Enter Your Password',
+                    isPassword: true,
+                    text: 'Enter Your Password',
+                    icon: Icons.lock,
+                    hintText: 'Enter Your Password'),
+                SizedBox(
+                  height: Responsive.height(1, context),
+                ),
+                CustomTextField(
+                    isPassword: false,
+                    text: 'Enter Your Number',
+                    icon: Icons.mobile_friendly,
+                    hintText: 'Enter Your Number'),
+                SizedBox(
+                  height: Responsive.height(1, context),
+                ),
+                CustomTextField(
+                  isPassword: false,
+                  text: 'Enter Your Name',
+                  icon: Icons.person,
+                  hintText: 'Enter Your Name',
                 ),
               ],
             ),
           ),
-
-          //Container for forgot password.
-          Container(
-            height: Responsive.height(5, context),
-            margin: EdgeInsets.only(
-              left: Responsive.width(45, context),
-            ),
-            decoration: BoxDecoration(
-                //color: Colors.yellowAccent,
-                ),
-            child: SmallText(
-              text: 'Forgot Password',
-              size: Responsive.height(3, context),
-              color: Colors.black38,
-            ),
+          SizedBox(
+            height: Responsive.height(2, context),
           ),
-
           //Container for Sign in Button.
           Container(
             height: Responsive.height(9, context),
@@ -115,13 +87,11 @@ class SignIn extends StatelessWidget {
               onPressed: () {
                 // Navigator.push(
                 //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => BottomNavBar(),
-                //   ),
+                //   MaterialPageRoute(builder: (context) => MainBody()),
                 // );
               },
               child: SmallText(
-                text: 'Sign In',
+                text: 'Sign Up',
                 size: Responsive.height(5, context),
                 color: Colors.white,
               ),
@@ -135,7 +105,9 @@ class SignIn extends StatelessWidget {
               ),
             ),
           ),
-
+          SizedBox(
+            height: Responsive.height(1.5, context),
+          ),
           //Container to navigate to create new account.
           Container(
             height: Responsive.height(7, context),
@@ -147,27 +119,51 @@ class SignIn extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SmallText(
-                  text: 'Dont have an account?',
+                  text: 'Already have an',
                   size: Responsive.height(3, context),
                   color: Colors.black38,
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SignUp(),
-                      ),
-                    );
+                    Navigator.pop(context);
                   },
                   child: SmallText(
-                    text: 'Create',
+                    text: 'Account?',
                     size: Responsive.height(3, context),
                     color: CustomColors.mainAppColor,
                   ),
-                )
+                ),
               ],
             ),
+          ),
+          //Footer text
+          SmallText(
+            text: 'Sign up using one of the following methods',
+            size: Responsive.height(3, context),
+            color: Colors.black38,
+          ),
+          SizedBox(height: Responsive.height(1, context)),
+          //Footer Icon to register through different other social media links.
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SignInButton(
+                Buttons.LinkedIn,
+                mini: true,
+                onPressed: () {},
+              ),
+              // SizedBox(width: Responsive.width(3, context)),
+              SignInButton(
+                Buttons.Facebook,
+                mini: true,
+                onPressed: () {},
+              ),
+              SignInButton(
+                Buttons.Twitter,
+                mini: true,
+                onPressed: () {},
+              ),
+            ],
           ),
         ],
       ),
