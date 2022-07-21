@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_application/utils/dimensions.dart';
 
 //Reusable text widget for big font size.
 
@@ -10,9 +9,9 @@ class BigText extends StatelessWidget {
   TextOverflow overflow;
   BigText(
       {Key? key,
-      this.color = const Color(0xFF131212),
+      this.color = const Color(0xFF5050f1),
       required this.text,
-      this.size = 22,
+      this.size = 20,
       this.overflow = TextOverflow.ellipsis})
       : super(key: key);
 
@@ -25,8 +24,7 @@ class BigText extends StatelessWidget {
       style: TextStyle(
         fontFamily: 'Roboto',
         color: color,
-        //fontSize: size,
-        fontSize: AdaptiveTextSize.getadaptiveTextSize(context, size),
+        fontSize: size,
         fontWeight: FontWeight.w400,
       ),
     );

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_application/pages/home/bottom_navigation/bottom_navgivation_bar.dart';
-
-import 'pages/authentication/sign_in.dart';
-import 'pages/authentication/sign_up.dart';
+import 'package:restaurant_application/pages/food/popular_food_detail.dart';
+import 'package:restaurant_application/pages/home/main_food_body.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: BottomNavBar(),
+      home: PopularFoodDetail(),
     );
   }
 }
