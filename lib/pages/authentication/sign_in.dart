@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_application/pages/authentication/sign_up.dart';
 import 'package:restaurant_application/pages/home/bottom_navigation/bottom_navgivation_bar.dart';
-import 'package:restaurant_application/pages/home/main_food_body.dart';
+import 'package:restaurant_application/services/auth.dart';
 import 'package:restaurant_application/utils/colors.dart';
 import 'package:restaurant_application/utils/dimensions.dart';
 import 'package:restaurant_application/widgets/bigtext.dart';
 import 'package:restaurant_application/widgets/smalltext.dart';
 import 'package:restaurant_application/widgets/textField.dart';
 
-class SignIn extends StatelessWidget {
+class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
 
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
+  //creating an instance  of the AuthService to call its function. A private variable _auth
+  final AuthServices _auth = AuthServices();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,13 +119,18 @@ class SignIn extends StatelessWidget {
                 // ),
                 ),
             child: ElevatedButton(
-              onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => BottomNavBar(),
-                //   ),
-                // );
+              //Making a call to the anonymous fuction to trigger FirebaseAuth function called SignInAnonymously.
+              onPressed: () async {
+                //Saving it in result variable.
+                dynamic result = await _auth.signInAnon();
+                //if the result is null then there is somethign went wrong.
+                if (result == null) {
+                  print('User Signed in');
+                  //showing auto generated user id in the terminal.
+                  print(result.uid);
+                } else {
+                  print('Error while signing in');
+                }
               },
               child: SmallText(
                 text: 'Sign In',

@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:restaurant_application/services/auth.dart';
 import 'package:restaurant_application/utils/colors.dart';
 import 'package:restaurant_application/utils/dimensions.dart';
+import 'package:restaurant_application/widgets/inputdecoration_form.dart';
 import 'package:restaurant_application/widgets/smalltext.dart';
 import 'package:restaurant_application/widgets/textField.dart';
 
-class SignUp extends StatelessWidget {
-  const SignUp({Key? key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  // const SignUp({Key? key}) : super(key: key);
+
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+  final AuthServices _auth = AuthServices();
+  final _formKey = GlobalKey<FormState>();
+
+  String email = '';
+  String password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -84,11 +97,19 @@ class SignUp extends StatelessWidget {
                 // ),
                 ),
             child: ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 // Navigator.push(
                 //   context,
                 //   MaterialPageRoute(builder: (context) => MainBody()),
                 // );
+                if (_formKey.currentState!.validate()) {
+                  dynamic result = await _auth.signInWithEmail(email, password);
+                  if (result == null) {
+                    setState(() {
+                      print('Credentials are incorrect');
+                    });
+                  }
+                }
               },
               child: SmallText(
                 text: 'Sign Up',
