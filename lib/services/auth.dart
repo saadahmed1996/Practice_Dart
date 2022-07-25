@@ -10,6 +10,7 @@ class AuthServices {
   }
 
   //Setup Stream for authchanges (if the user is currently logged in or logged out).
+  //Maping each firebase value to our  custom user firebase obj.
   Stream<CustomFirebaseUser?> get user {
     return _auth
         .authStateChanges()
@@ -17,26 +18,37 @@ class AuthServices {
   }
 
   //sign in anonymously
-  Future signInAnon() async {
+  // Future signInAnon() async {
+  //   try {
+  //     UserCredential result = await _auth.signInAnonymously();
+  //     User? user = result.user;
+  //     return _userFromFirebaseUser(user!);
+  //   } catch (e) {
+  //     //print(e.toString());
+  //     return null;
+  //   }
+  // }
+
+  //sign in with email & password
+  Future signInWithEmailAndPassword(String email, String password) async {
     try {
-      UserCredential result = await _auth.signInAnonymously();
+      UserCredential result = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
       User? user = result.user;
       return _userFromFirebaseUser(user!);
     } catch (e) {
-      //print(e.toString());
+      print(e.toString());
       return null;
     }
   }
 
-  //sign in with email & password
-
   //register with email & password
-  Future signInWithEmail(String email, String password) async {
+  Future registerWithEmail(String email, String password) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User? user = result.user;
-      return user;
+      return _userFromFirebaseUser(user!);
     } catch (e) {
       print(e.toString());
       return null;
