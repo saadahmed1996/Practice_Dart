@@ -1,5 +1,8 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:restaurant_application/pages/authentication/sign_in.dart';
+import 'package:restaurant_application/services/auth.dart';
 import 'package:restaurant_application/utils/colors.dart';
 import 'package:restaurant_application/utils/dimensions.dart';
 import 'package:restaurant_application/widgets/bigtext.dart';
@@ -11,6 +14,7 @@ class MainBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthServices _auth = AuthServices();
     return Scaffold(
       body: Column(
         children: [
@@ -40,19 +44,28 @@ class MainBody extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Center(
-                    child: Container(
-                      height: Responsive.height(8, context),
-                      width: Responsive.width(14, context),
-                      child: Icon(
-                        Icons.search,
-                        color: Colors.white,
-                      ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: CustomColors.mainAppColor),
+                  // Center(
+                  //   child: Container(
+                  //     height: Responsive.height(8, context),
+                  //     width: Responsive.width(15, context),
+                  //     child: Icon(
+                  //       Icons.search,
+                  //       color: Colors.white,
+                  //     ),
+                  //     decoration: BoxDecoration(
+                  //         borderRadius: BorderRadius.circular(15),
+                  //         color: CustomColors.mainAppColor),
+                  //   ),
+                  // ),
+                  TextButton(
+                    onPressed: () async {
+                      await _auth.signOut();
+                    },
+                    child: SmallText(
+                      text: 'logout',
+                      color: Colors.black,
                     ),
-                  ),
+                  )
                 ],
               ),
             ),

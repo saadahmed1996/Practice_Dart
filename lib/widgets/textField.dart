@@ -7,7 +7,7 @@ class CustomTextField extends StatelessWidget {
   final IconData icon;
   double fontSize;
   final String hintText;
-  final bool isPassword; 
+  final bool isPassword;
 
   CustomTextField({
     Key? key,
@@ -15,12 +15,13 @@ class CustomTextField extends StatelessWidget {
     required this.icon,
     this.fontSize = 22,
     required this.hintText,
-    required this.isPassword
+    required this.isPassword,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      
       obscureText: isPassword,
       decoration: InputDecoration(
         icon: Icon(
