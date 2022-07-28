@@ -33,7 +33,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
           BottomNavigationBarItem(
             icon: AppIcon(
               icon: Icons.home,
-              size: 20,
               iconColor: CustomColors.mainAppColor,
             ),
             label: 'Home',
@@ -41,7 +40,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           BottomNavigationBarItem(
             icon: AppIcon(
               icon: Icons.circle,
-              size: 20,
+
               iconColor: CustomColors.mainAppColor,
             ),
             label: 'Recommended',
@@ -49,7 +48,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           BottomNavigationBarItem(
             icon: AppIcon(
               icon: Icons.business,
-              size: 20,
+
               iconColor: CustomColors.mainAppColor,
             ),
             label: 'Popular',

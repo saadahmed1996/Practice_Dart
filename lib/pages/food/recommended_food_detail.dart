@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_application/utils/colors.dart';
+import 'package:restaurant_application/utils/dimension_getx.dart';
 import 'package:restaurant_application/utils/dimensions.dart';
 import 'package:restaurant_application/widgets/app_icon.dart';
 import 'package:restaurant_application/widgets/bigtext.dart';
@@ -18,7 +19,7 @@ class RecommendedFoodDetail extends StatelessWidget {
             right: 0,
             left: 0,
             child: Container(
-              height: Responsive.height(40, context),
+              height: DimensionsGetx.popularFoodImgSize,
               width: double.maxFinite,
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -56,17 +57,17 @@ class RecommendedFoodDetail extends StatelessWidget {
               width: double.maxFinite,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  topRight: Radius.circular(15),
+                  topLeft: Radius.circular(DimensionsGetx.radius20),
+                  topRight: Radius.circular(DimensionsGetx.radius20),
                 ),
                 color: Colors.white,
               ),
               child: Padding(
-                padding: const EdgeInsets.all(15),
+                padding: EdgeInsets.all(DimensionsGetx.height20),
                 child: Column(
                   children: [
                     BigText(text: 'Afghani Boti'),
-                    SizedBox(height: Responsive.height(1.6, context)),
+                    SizedBox(height: DimensionsGetx.height20),
                     SmallText(text: 'Enjoy these at any time at any moment'),
                   ],
                 ),
@@ -93,12 +94,12 @@ class RecommendedFoodDetail extends StatelessWidget {
                     iconColor: Colors.white,
                     backgroundColor: CustomColors.mainAppColor,
                   ),
-                  SizedBox(width: Responsive.width(2.5, context)),
+                  SizedBox(width: DimensionsGetx.width10),
                   BigText(
                     text: '\$ 32 X 0',
                     color: Colors.black,
                   ),
-                  SizedBox(width: Responsive.width(2.5, context)),
+                  SizedBox(width: DimensionsGetx.width10),
                   AppIcon(
                     icon: Icons.add_rounded,
                     size: 24,
