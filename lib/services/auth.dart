@@ -1,17 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-<<<<<<< Updated upstream
-=======
 import 'package:restaurant_application/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
->>>>>>> Stashed changes
 
 class AuthServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-<<<<<<< Updated upstream
-  //sign in anoy
-  Future signInAnon() async {
-=======
   //Create user obj based on FirebaseUser
   CustomFirebaseUser? _userFromFirebaseUser(User user) {
     return user != null ? CustomFirebaseUser(uid: user.uid) : null;
@@ -27,31 +20,22 @@ class AuthServices {
 
   //sign in with email & password
   Future signInWithEmailAndPassword(String email, String password) async {
->>>>>>> Stashed changes
     try {
-      //_auth returns in UserCredential key
-      UserCredential result = await _auth.signInAnonymously();
+      UserCredential result = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
       User? user = result.user;
-<<<<<<< Updated upstream
-      return user;
-=======
 
       // Shared Preference
       // getPef.set('currentuser;, user);
       //
       return _userFromFirebaseUser(user!);
->>>>>>> Stashed changes
     } catch (e) {
       print(e.toString());
       return null;
     }
   }
 
-  //sign in with email & password
-
   //register with email & password
-<<<<<<< Updated upstream
-=======
   Future registerWithEmail(String email, String password) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
@@ -68,7 +52,14 @@ class AuthServices {
   Future resetPassword(String email) async {
     await _auth.sendPasswordResetEmail(email: email);
   }
->>>>>>> Stashed changes
 
-  //signout
+  //signout function
+  Future signOut() async {
+    try {
+      return await _auth.signOut();
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 }

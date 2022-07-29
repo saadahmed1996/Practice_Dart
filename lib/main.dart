@@ -1,12 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-<<<<<<< Updated upstream
-import 'package:restaurant_application/pages/home/bottom_navigation/bottom_navgivation_bar.dart';
-import 'pages/authentication/sign_in.dart';
-import 'pages/authentication/sign_up.dart';
-import 'package:firebase_core/firebase_core.dart';
-
-Future<void> main() async {
-=======
 import 'package:provider/provider.dart';
 import 'package:restaurant_application/models/user_model.dart';
 import 'package:restaurant_application/pages/authentication/authrizer.dart';
@@ -26,8 +19,9 @@ import 'pages/food/recommended_food_detail.dart';
 import 'pages/home/food_page_body.dart';
 import 'package:get/get.dart';
 
+import 'pages/user_detail/registration_user_detail.dart';
+
 Future main() async {
->>>>>>> Stashed changes
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -44,14 +38,6 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-<<<<<<< Updated upstream
-    return MaterialApp(
-      title: 'Flutter Demo',
-      //To remove debug banner it's annoying.
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-=======
     //Wraping it around the stream provider
     //The whole app will be connected to firebase through stream
     return StreamProvider<CustomFirebaseUser?>.value(
@@ -62,9 +48,10 @@ class _MyAppState extends State<MyApp> {
         // //To remove debug banner it's annoying.
         debugShowCheckedModeBanner: false,
         home: Protector(),
->>>>>>> Stashed changes
       ),
-      home: BottomNavBar(),
     );
   }
 }
+
+//Changes made
+//25-07-2022

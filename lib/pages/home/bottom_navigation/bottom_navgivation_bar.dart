@@ -20,7 +20,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     MainBody(),
     PopularFoodDetail(),
     RecommendedFoodDetail(),
-    SignIn(),
+    // SignIn(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -53,14 +53,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
             ),
             label: 'Popular',
           ),
-          BottomNavigationBarItem(
-            icon: AppIcon(
-              icon: Icons.person,
-              size: 20,
-              iconColor: CustomColors.mainAppColor,
-            ),
-            label: 'Sign In',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: AppIcon(
+          //     icon: Icons.person,
+          //     size: 20,
+          //     iconColor: CustomColors.mainAppColor,
+          //   ),
+          //   label: 'Sign In',
+          // ),
         ],
         selectedLabelStyle: TextStyle(fontSize: 15),
         selectedItemColor: CustomColors.primaryTextColor,

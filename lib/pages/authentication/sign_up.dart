@@ -1,29 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:restaurant_application/services/auth.dart';
 import 'package:restaurant_application/utils/colors.dart';
 import 'package:restaurant_application/utils/dimensions.dart';
-<<<<<<< Updated upstream
-import 'package:restaurant_application/widgets/smalltext.dart';
-import 'package:restaurant_application/widgets/textField.dart';
-
-class SignUp extends StatelessWidget {
-  const SignUp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          //Container For Logo Image
-          Container(
-            height: Responsive.height(22, context),
-            margin: EdgeInsets.only(top: 40),
-            decoration: BoxDecoration(
-              //color: Colors.redAccent,
-              image: DecorationImage(
-                image: AssetImage('assets/image/logo part 1.png'),
-                fit: BoxFit.scaleDown,
-=======
 import 'package:restaurant_application/widgets/inputdecoration_form.dart';
 import 'package:restaurant_application/widgets/loading.dart';
 import 'package:restaurant_application/widgets/smalltext.dart';
@@ -70,87 +49,81 @@ class _SignUpState extends State<SignUp> {
                     fit: BoxFit.scaleDown,
                   ),
                 ),
->>>>>>> Stashed changes
               ),
-            ),
-          ),
-          //Container for text field.
-          Container(
-            margin: EdgeInsets.only(
-              left: Responsive.height(3, context),
-              right: Responsive.height(3, context),
-            ),
-            height: Responsive.height(36, context),
-            decoration: BoxDecoration(
-                //color: Colors.redAccent,
-                ),
-            child: Column(
-              children: [
-                CustomTextField(
-                    isPassword: false,
-                    text: 'Enter Your Email',
-                    icon: Icons.email,
-                    hintText: 'Enter Your Email'),
-                SizedBox(
-                  height: Responsive.height(1, context),
-                ),
-                CustomTextField(
-                    isPassword: true,
-                    text: 'Enter Your Password',
-                    icon: Icons.lock,
-                    hintText: 'Enter Your Password'),
-                SizedBox(
-                  height: Responsive.height(1, context),
-                ),
-                CustomTextField(
-                    isPassword: false,
-                    text: 'Enter Your Number',
-                    icon: Icons.mobile_friendly,
-                    hintText: 'Enter Your Number'),
-                SizedBox(
-                  height: Responsive.height(1, context),
-                ),
-                CustomTextField(
-                  isPassword: false,
-                  text: 'Enter Your Name',
-                  icon: Icons.person,
-                  hintText: 'Enter Your Name',
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: Responsive.height(2, context),
-          ),
-          //Container for Sign in Button.
-          Container(
-            height: Responsive.height(9, context),
-            width: Responsive.width(45, context),
-            decoration: BoxDecoration(
-                // color: Colors.redAccent,
-                // borderRadius: BorderRadius.circular(
-                //   Responsive.height(5, context),
-                // ),
-                ),
-            child: ElevatedButton(
-              onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => MainBody()),
-                // );
-              },
-              child: SmallText(
-                text: 'Sign Up',
-                size: Responsive.height(5, context),
-                color: Colors.white,
+              SizedBox(
+                height: Responsive.height(4, context),
               ),
-<<<<<<< Updated upstream
-              style: ElevatedButton.styleFrom(
-                primary: CustomColors.mainAppColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                    Responsive.height(4, context),
-=======
+              //Container for text field.
+              Container(
+                margin: EdgeInsets.only(
+                  left: Responsive.height(3, context),
+                  right: Responsive.height(3, context),
+                ),
+                height: Responsive.height(25, context),
+                decoration: BoxDecoration(
+                    //color: Colors.redAccent,
+                    ),
+                child: Column(
+                  children: [
+                    TextFormField(
+                      //validating the text field.
+                      validator: (val) =>
+                          val!.isEmpty ? 'Enter an Email' : null,
+                      decoration:
+                          textInputDecoration.copyWith(hintText: 'Email'),
+                      //Called when the user initiates a change to the
+                      //TextField's value: when they have inserted or deleted text.
+                      onChanged: (val) {
+                        setState(() => email = val);
+                      },
+                    ),
+                    // CustomTextField(
+                    //     isPassword: false,
+                    //     text: 'Enter Your Email',
+                    //     icon: Icons.email,
+                    //     hintText: 'Enter Your Email'),
+                    SizedBox(
+                      height: Responsive.height(4, context),
+                    ),
+                    TextFormField(
+                      obscureText: true,
+                      //validating the text field.
+                      validator: (val) => val!.length < 6
+                          ? 'Enter an Password at least length of 6'
+                          : null,
+                      decoration:
+                          textInputDecoration.copyWith(hintText: 'Password'),
+                      //Called when the user initiates a change to the
+                      //TextField's value: when they have inserted or deleted text.
+                      onChanged: (val) {
+                        setState(() => password = val);
+                      },
+                    ),
+                    // CustomTextField(
+                    //     isPassword: true,
+                    //     text: 'Enter Your Password',
+                    //     icon: Icons.lock,
+                    //     hintText: 'Enter Your Password'),
+                    // SizedBox(
+                    //   height: Responsive.height(1, context),
+                    // ),
+                    // CustomTextField(
+                    //     isPassword: false,
+                    //     text: 'Enter Your Number',
+                    //     icon: Icons.mobile_friendly,
+                    //     hintText: 'Enter Your Number'),
+                    // SizedBox(
+                    //   height: Responsive.height(1, context),
+                    // ),
+                    // CustomTextField(
+                    //   isPassword: false,
+                    //   text: 'Enter Your Name',
+                    //   icon: Icons.person,
+                    //   hintText: 'Enter Your Name',
+                    // ),
+                  ],
+                ),
+              ),
               SizedBox(
                 height: Responsive.height(1, context),
               ),
@@ -192,73 +165,73 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                     ),
->>>>>>> Stashed changes
                   ),
                 ),
               ),
-            ),
-          ),
-          SizedBox(
-            height: Responsive.height(1.5, context),
-          ),
-          //Container to navigate to create new account.
-          Container(
-            height: Responsive.height(7, context),
-            width: Responsive.width(85, context),
-            decoration: BoxDecoration(
-                //color: Colors.redAccent,
+              SizedBox(
+                height: Responsive.height(1, context),
+              ),
+              //Container to navigate to create new account.
+              Container(
+                height: Responsive.height(7, context),
+                width: Responsive.width(85, context),
+                decoration: BoxDecoration(
+                    //color: Colors.redAccent,
+                    ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SmallText(
+                      text: 'Already have an',
+                      size: Responsive.height(2, context),
+                      color: Colors.black38,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        // Navigator.pop(context);
+                        widget.toggleView();
+                      },
+                      child: SmallText(
+                        text: 'Account?',
+                        size: Responsive.height(2, context),
+                        color: CustomColors.mainAppColor,
+                      ),
+                    ),
+                  ],
                 ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SmallText(
-                  text: 'Already have an',
-                  size: Responsive.height(3, context),
-                  color: Colors.black38,
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: SmallText(
-                    text: 'Account?',
-                    size: Responsive.height(3, context),
-                    color: CustomColors.mainAppColor,
+              ),
+              //Footer text
+              SmallText(
+                text: 'Sign up using one of the following methods',
+                size: Responsive.height(2, context),
+                color: Colors.black38,
+              ),
+              SizedBox(height: Responsive.height(2, context)),
+              //Footer Icon to register through different other social media links.
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SignInButton(
+                    Buttons.LinkedIn,
+                    mini: true,
+                    onPressed: () {},
                   ),
-                ),
-              ],
-            ),
-          ),
-          //Footer text
-          SmallText(
-            text: 'Sign up using one of the following methods',
-            size: Responsive.height(3, context),
-            color: Colors.black38,
-          ),
-          SizedBox(height: Responsive.height(1, context)),
-          //Footer Icon to register through different other social media links.
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SignInButton(
-                Buttons.LinkedIn,
-                mini: true,
-                onPressed: () {},
-              ),
-              // SizedBox(width: Responsive.width(3, context)),
-              SignInButton(
-                Buttons.Facebook,
-                mini: true,
-                onPressed: () {},
-              ),
-              SignInButton(
-                Buttons.Twitter,
-                mini: true,
-                onPressed: () {},
+                  // SizedBox(width: Responsive.width(3, context)),
+                  SignInButton(
+                    Buttons.Facebook,
+                    mini: true,
+                    onPressed: () {},
+                  ),
+                  SignInButton(
+                    Buttons.Twitter,
+                    mini: true,
+                    onPressed: () {},
+                  ),
+                ],
               ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant_application/pages/home/bottom_navigation/bottom_navgivation_bar.dart';
+import 'package:restaurant_application/pages/user_detail/registration_user_detail.dart';
 import 'package:restaurant_application/services/auth.dart';
 import 'package:restaurant_application/utils/colors.dart';
 import 'package:restaurant_application/utils/dimensions.dart';
@@ -83,7 +84,7 @@ class _EmailVerificationState extends State<EmailVerification> {
   @override
   Widget build(BuildContext context) => isEmailVerified
       //if the email is verified then show the menu page
-      ? BottomNavBar()
+      ? RegistrationUserDetail()
       //else show the email verification page.
       : Scaffold(
           appBar: AppBar(
