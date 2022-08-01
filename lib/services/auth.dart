@@ -35,6 +35,11 @@ class AuthServices {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       User? user = result.user;
+<<<<<<< Updated upstream
+=======
+      // Shared Preference
+      // getPef.set('currentuser;, user);
+>>>>>>> Stashed changes
       return _userFromFirebaseUser(user!);
     } catch (e) {
       print(e.toString());

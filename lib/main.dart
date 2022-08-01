@@ -10,7 +10,14 @@ import 'pages/authentication/sign_up.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'models/user_model.dart';
 
+<<<<<<< Updated upstream
 Future main() async  {
+=======
+import 'pages/user_detail/registration_user_detail.dart';
+import 'pages/user_detail/udpate_user_detail.dart';
+
+Future main() async {
+>>>>>>> Stashed changes
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -31,11 +38,16 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         // title: 'Flutter Demo',
         // //To remove debug banner it's annoying.
+<<<<<<< Updated upstream
         // debugShowCheckedModeBanner: false,
         // theme: ThemeData(
         //   primarySwatch: Colors.blue,
         // ),
         home: Protector(),
+=======
+        debugShowCheckedModeBanner: false,
+        home: RegistrationUserDetail(),
+>>>>>>> Stashed changes
       ),
     );
   }

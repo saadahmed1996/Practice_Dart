@@ -22,6 +22,10 @@ class _EmailVerificationState extends State<EmailVerification> {
   bool resendingEmailVerification = false;
   Timer? timer;
 
+<<<<<<< Updated upstream
+=======
+//init state when this page called this will be the initial fucntion to launch.
+>>>>>>> Stashed changes
   @override
   void initState() {
     super.initState();
