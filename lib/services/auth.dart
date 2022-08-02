@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:restaurant_application/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get/get.dart';
+
 
 class AuthServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -54,6 +56,7 @@ class AuthServices {
   //signout function
   Future signOut() async {
     try {
+      Get.back();
       return await _auth.signOut();
     } catch (e) {
       print(e.toString());

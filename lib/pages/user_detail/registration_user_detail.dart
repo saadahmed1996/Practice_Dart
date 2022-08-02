@@ -4,16 +4,14 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
 import 'package:restaurant_application/pages/home/bottom_navigation/bottom_navgivation_bar.dart';
-import 'package:restaurant_application/pages/user_detail/udpate_user_detail.dart';
 import 'package:restaurant_application/services/auth.dart';
 import 'package:restaurant_application/utils/colors.dart';
 import 'package:restaurant_application/utils/dimension_getx.dart';
 import 'package:restaurant_application/utils/dimensions.dart';
 import 'package:restaurant_application/widgets/inputdecoration_form.dart';
 import 'package:restaurant_application/widgets/smalltext.dart';
-import 'package:intl/intl.dart';
+import 'package:get/get.dart';
 import 'package:path/path.dart' as Path;
 
 class RegistrationUserDetail extends StatefulWidget {
@@ -34,7 +32,12 @@ class _RegistrationUserDetailState extends State<RegistrationUserDetail> {
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   //INIT STATE FOR CHECKING THE USER ENTRY IS NULL OR FILLED
-  final FirebaseFirestore db = FirebaseFirestore.instance;
+  // final FirebaseFirestore db = FirebaseFirestore.instance;
+
+  //Here We will load the loading screen.
+  Future<void> loaderWhilefetchingData() async {
+    // TODO: do something here for a loader. when user switch from home page to user profile.
+  }
 
   Future<void> checkIfUserUidExistOrNot() async {
     final User? user = auth.currentUser;
@@ -56,8 +59,14 @@ class _RegistrationUserDetailState extends State<RegistrationUserDetail> {
 
   @override
   initState() {
-    checkIfUserUidExistOrNot();
     super.initState();
+    checkIfUserUidExistOrNot();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
@@ -210,11 +219,8 @@ class _RegistrationUserDetailState extends State<RegistrationUserDetail> {
                         final uid = user!.uid;
                         if (uid != null) {
                           uploadFile();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => BottomNavBar(),
-                            ),
+                          Get.to(
+                            BottomNavBar(),
                           );
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -269,6 +275,7 @@ class _RegistrationUserDetailState extends State<RegistrationUserDetail> {
           'Phone': phoneNo.text,
           'imageUrl': uploadedFileURL,
         });
+        print(uploadedFileURL.toString());
       });
     }).catchError((onError) {
       print(onError);

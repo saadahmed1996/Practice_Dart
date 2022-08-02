@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_application/pages/authentication/sign_in.dart';
-
 import 'package:restaurant_application/pages/food/popular_food_detail.dart';
 import 'package:restaurant_application/pages/food/recommended_food_detail.dart';
 import 'package:restaurant_application/pages/home/main_food_body.dart';
 import 'package:restaurant_application/utils/colors.dart';
 import 'package:restaurant_application/widgets/app_icon.dart';
 
-import '../../user_detail/udpate_user_detail.dart';
+import '../../user_detail/user_profile.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);

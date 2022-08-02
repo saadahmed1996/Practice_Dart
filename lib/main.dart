@@ -1,26 +1,12 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_application/models/user_model.dart';
-import 'package:restaurant_application/pages/authentication/authrizer.dart';
-import 'package:restaurant_application/pages/authentication/email_verification.dart';
-import 'package:restaurant_application/pages/home/main_food_body.dart';
-import 'package:restaurant_application/protector.dart';
-import 'package:restaurant_application/pages/home/bottom_navigation/bottom_navgivation_bar.dart';
-import 'package:restaurant_application/services/auth.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'pages/authentication/reset_password.dart';
-import 'pages/authentication/sign_in.dart';
-import 'pages/authentication/sign_up.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:restaurant_application/protector.dart';
+import 'package:restaurant_application/services/auth.dart';
 import 'models/user_model.dart';
-import 'pages/food/popular_food_detail.dart';
-import 'pages/food/recommended_food_detail.dart';
-import 'pages/home/food_page_body.dart';
 import 'package:get/get.dart';
 
-import 'pages/user_detail/registration_user_detail.dart';
-import 'pages/user_detail/udpate_user_detail.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
