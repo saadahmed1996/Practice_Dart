@@ -14,11 +14,12 @@ class Protector extends StatelessWidget {
   Widget build(BuildContext context) {
     //Provider has been insitailized for authrizing registered users.
     final user = Provider.of<CustomFirebaseUser?>(context);
-
+    //SharedPreference
+    //getUser
     //if the user value is null then it will auto redirect the new user to the sign up page.
     if (user == null) {
       return Authrizer();
-      //else the user will redirected to the home screen page.
+      //else the user will redirected to the email verification screen page.
     } else {
       return EmailVerification();
     }

@@ -1,12 +1,10 @@
-import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant_application/pages/user_detail/registration_user_detail.dart';
+import 'package:restaurant_application/services/auth.dart';
+import 'package:restaurant_application/utils/colors.dart';
 import 'package:restaurant_application/utils/dimension_getx.dart';
 import 'package:restaurant_application/widgets/bigtext.dart';
 import 'package:restaurant_application/widgets/smalltext.dart';
@@ -23,23 +21,26 @@ class _UpdateUserDetailState extends State<UpdateUserDetail> {
   Widget build(BuildContext context) {
     final RegistrationUserDetail registrationUserDetail =
         RegistrationUserDetail();
-
     FirebaseStorage storageReference = FirebaseStorage.instance;
+    AuthServices _auth = AuthServices();
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: CustomColors.mainAppColor,
         title: BigText(
           text: 'Profile',
           color: Colors.white,
         ),
         actions: [
-          Icon(Icons.settings),
-          SizedBox(width: DimensionsGetx.width10),
-          Icon(Icons.search),
+          Padding(
+            padding: EdgeInsets.all(DimensionsGetx.width10),
+            child: Icon(Icons.settings),
+          ),
         ],
       ),
       body: Column(
         children: [
+          //Container for displaying profile pic, user name, user id, and sign out button.
           Container(
             margin: EdgeInsets.only(
                 left: DimensionsGetx.width10,
@@ -52,10 +53,11 @@ class _UpdateUserDetailState extends State<UpdateUserDetail> {
                   width: 100,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    color: Colors.redAccent,
-
+                    color: Colors.black,
                     // image: DecorationImage(image: NetworkImage(image)),
                   ),
+                  child: Icon(Icons.person,
+                      color: Colors.white, size: DimensionsGetx.iconSize96),
                 ),
                 SizedBox(width: DimensionsGetx.width10),
                 Column(
@@ -64,9 +66,12 @@ class _UpdateUserDetailState extends State<UpdateUserDetail> {
                     BigText(text: 'Saad Ahmed'),
                     SmallText(text: 'Your Profile'),
                     ElevatedButton.icon(
-                      onPressed: () => loadImage(),
-                      icon: Icon(Icons.abc_outlined),
-                      label: Text('Print Image URL'),
+                      onPressed: () => _auth.signOut(),
+                      icon: Icon(Icons.logout),
+                      label: Text('LOGOUT'),
+                      style: ElevatedButton.styleFrom(
+                        primary: CustomColors.mainAppColor,
+                      ),
                     ),
                   ],
                 ),
@@ -85,14 +90,15 @@ Future<String> loadImage() async {
   final _userID = FirebaseAuth.instance.currentUser!.uid;
 
   //collect the image name
-  DocumentSnapshot variable =
+  DocumentSnapshot getUserId =
       await FirebaseFirestore.instance.collection('users').doc(_userID).get();
 
   //a list of images names (i need only one)
   // var _file_name = variable['userprofile/'];
 
   //select the image url
-  Reference ref = FirebaseStorage.instance.ref().child("users/${_userID}");
+  Reference ref =
+      FirebaseStorage.instance.ref().child("userprofile/${_userID}");
   //get image url from firebase storage
   var url = await ref.getDownloadURL();
   print('url: ' + url);

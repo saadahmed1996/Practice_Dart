@@ -7,6 +7,8 @@ import 'package:restaurant_application/pages/home/main_food_body.dart';
 import 'package:restaurant_application/utils/colors.dart';
 import 'package:restaurant_application/widgets/app_icon.dart';
 
+import '../../user_detail/udpate_user_detail.dart';
+
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
 
@@ -20,7 +22,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     MainBody(),
     PopularFoodDetail(),
     RecommendedFoodDetail(),
-    // SignIn(),
+    UpdateUserDetail(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
           BottomNavigationBarItem(
             icon: AppIcon(
               icon: Icons.home,
-              size: 20,
               iconColor: CustomColors.mainAppColor,
             ),
             label: 'Home',
@@ -41,7 +42,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           BottomNavigationBarItem(
             icon: AppIcon(
               icon: Icons.circle,
-              size: 20,
+
               iconColor: CustomColors.mainAppColor,
             ),
             label: 'Recommended',
@@ -49,19 +50,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
           BottomNavigationBarItem(
             icon: AppIcon(
               icon: Icons.business,
-              size: 20,
+
               iconColor: CustomColors.mainAppColor,
             ),
             label: 'Popular',
           ),
-          // BottomNavigationBarItem(
-          //   icon: AppIcon(
-          //     icon: Icons.person,
-          //     size: 20,
-          //     iconColor: CustomColors.mainAppColor,
-          //   ),
-          //   label: 'Sign In',
-          // ),
+          BottomNavigationBarItem(
+            icon: AppIcon(
+              icon: Icons.person,
+              size: 20,
+              iconColor: CustomColors.mainAppColor,
+            ),
+            label: 'Profile',
+          ),
         ],
         selectedLabelStyle: TextStyle(fontSize: 15),
         selectedItemColor: CustomColors.primaryTextColor,

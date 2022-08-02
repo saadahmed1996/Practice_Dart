@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:restaurant_application/models/user_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -17,29 +18,14 @@ class AuthServices {
         .map((User? user) => _userFromFirebaseUser(user!));
   }
 
-  //sign in anonymously
-  // Future signInAnon() async {
-  //   try {
-  //     UserCredential result = await _auth.signInAnonymously();
-  //     User? user = result.user;
-  //     return _userFromFirebaseUser(user!);
-  //   } catch (e) {
-  //     //print(e.toString());
-  //     return null;
-  //   }
-  // }
-
   //sign in with email & password
   Future signInWithEmailAndPassword(String email, String password) async {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       User? user = result.user;
-<<<<<<< Updated upstream
-=======
       // Shared Preference
       // getPef.set('currentuser;, user);
->>>>>>> Stashed changes
       return _userFromFirebaseUser(user!);
     } catch (e) {
       print(e.toString());
@@ -58,6 +44,11 @@ class AuthServices {
       print(e.toString());
       return null;
     }
+  }
+ 
+  //Reset Password
+  Future resetPassword(String email) async {
+    await _auth.sendPasswordResetEmail(email: email);
   }
 
   //signout function

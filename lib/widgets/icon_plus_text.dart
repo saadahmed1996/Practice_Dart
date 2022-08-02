@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_application/utils/dimension_getx.dart';
 import 'package:restaurant_application/widgets/smalltext.dart';
-
-import '../utils/dimensions.dart';
 
 //Creating a reusable icon and text widget horizontally.
 class IconPlusText extends StatelessWidget {
@@ -23,7 +22,7 @@ class IconPlusText extends StatelessWidget {
           icon,
           color: iconColor,
         ),
-        SizedBox(width: Responsive.width(1.4, context)),
+        SizedBox(width: DimensionsGetx.width10),
         SmallText(text: text),
       ],
     );

@@ -8,9 +8,11 @@ class DimensionsGetx {
   static double screenHeight = Get.context!.height;
   static double screenWidth = Get.context!.width;
 
+  //Containers height
   static double pageView = screenHeight / 2.28;
-
   static double pageViewContainer = screenHeight / 3.32;
+  
+  //Page view text
   static double pageViewText = screenHeight / 6.09;
 
   //dynamic Height Padding & Margin
@@ -33,7 +35,7 @@ class DimensionsGetx {
   static double font20 = screenHeight / 36.571;
   static double font26 = screenHeight / 28.13;
 
-  //radius
+  //circle radius
   static double radius15 = screenHeight / 48.76;
   static double radius20 = screenHeight / 36.571;
   static double radius30 = screenHeight / 24.38;
@@ -41,7 +43,9 @@ class DimensionsGetx {
   //Icon Size
   static double iconSize24 = screenHeight / 30.47;
   static double iconSize16 = screenHeight / 45.71;
-
+  static double iconSize72 = screenHeight / 10.15; 
+  static double iconSize96 = screenHeight / 7.61;
+  
   //List View Size
   static double listViewImgSize = screenWidth / 3.42;
   static double listViewTextContainerSize = screenWidth / 4.11;

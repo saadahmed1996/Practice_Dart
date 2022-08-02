@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_application/utils/dimension_getx.dart';
 import 'package:restaurant_application/utils/dimensions.dart';
 
 class AppIcon extends StatelessWidget {
@@ -11,7 +12,7 @@ class AppIcon extends StatelessWidget {
       required this.icon,
       this.backgroundColor = const Color(0xfffcf4e4),
       this.iconColor = const Color(0xff756d54),
-      this.size = 45})
+      this.size = 0})
       : super(key: key);
 
   @override
@@ -26,7 +27,7 @@ class AppIcon extends StatelessWidget {
       child: Icon(
         icon,
         color: iconColor,
-        size: 24,
+        size: size == 0 ? DimensionsGetx.iconSize24 : size,
       ),
     );
   }

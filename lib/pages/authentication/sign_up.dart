@@ -4,6 +4,7 @@ import 'package:restaurant_application/services/auth.dart';
 import 'package:restaurant_application/utils/colors.dart';
 import 'package:restaurant_application/utils/dimensions.dart';
 import 'package:restaurant_application/widgets/inputdecoration_form.dart';
+import 'package:restaurant_application/widgets/loading.dart';
 import 'package:restaurant_application/widgets/smalltext.dart';
 import 'package:restaurant_application/widgets/textField.dart';
 
@@ -26,10 +27,12 @@ class _SignUpState extends State<SignUp> {
 
   String email = '';
   String password = '';
+  String error = '';
+  bool loading = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -124,6 +127,10 @@ class _SignUpState extends State<SignUp> {
               SizedBox(
                 height: Responsive.height(1, context),
               ),
+              //Container for displaying error
+              Container(
+                child: SmallText(text: error, color:  Colors.redAccent,),
+              ),
               //Container for Sign in Button.
               Padding(
                 padding: EdgeInsets.all(Responsive.height(2, context)),
@@ -132,11 +139,15 @@ class _SignUpState extends State<SignUp> {
                   child: ElevatedButton(
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
+                        setState(() {
+                          loading = true;
+                        });
                         dynamic result =
                             await _auth.registerWithEmail(email, password);
                         if (result == null) {
                           setState(() {
-                            print('Credentials are incorrect');
+                            error = 'Invalid Email Address';
+                            loading = false;
                           });
                         }
                       }
@@ -172,7 +183,7 @@ class _SignUpState extends State<SignUp> {
                   children: [
                     SmallText(
                       text: 'Already have an',
-                      size: Responsive.height(3, context),
+                      size: Responsive.height(2, context),
                       color: Colors.black38,
                     ),
                     TextButton(
@@ -182,7 +193,7 @@ class _SignUpState extends State<SignUp> {
                       },
                       child: SmallText(
                         text: 'Account?',
-                        size: Responsive.height(3, context),
+                        size: Responsive.height(2, context),
                         color: CustomColors.mainAppColor,
                       ),
                     ),

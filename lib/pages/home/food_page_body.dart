@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_application/pages/food/recommended_food_detail.dart';
 import 'package:restaurant_application/utils/colors.dart';
+import 'package:restaurant_application/utils/dimension_getx.dart';
 import 'package:restaurant_application/utils/dimensions.dart';
 import 'package:restaurant_application/widgets/bigtext.dart';
 import 'package:restaurant_application/widgets/icon_plus_text.dart';
@@ -18,12 +19,31 @@ class FoodPageBody extends StatefulWidget {
 class _FoodPageBodyState extends State<FoodPageBody> {
   //To make a next and previous slide visible from left to right.
   PageController pageController = PageController(viewportFraction: 0.85);
-  final _currentPageValue = 0.0;
+  var _currentPageValue = 0.0;
+  @override
+  @override
+  void initState() {
+    super.initState();
+    pageController.addListener(() {
+      setState(() {
+        _currentPageValue = pageController.page!;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    pageController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    // print("height" + MediaQuery.of(context).size.height.toString());
-    // print("width" + MediaQuery.of(context).size.width.toString());
-    // print('screen size' + MediaQuery.of(context).size.toString());
+    //For getting the actual size of screen for the device we are working on it.
+    //S6 Edge plus height is : 731.42 & Width is : 411.42
+    // print("Current height is " + MediaQuery.of(context).size.height.toString());
+    // print("Current width is " + MediaQuery.of(context).size.width.toString());
     return Column(
       children: [
         //Slider Section
@@ -39,7 +59,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           child: Container(
             //For debuging purpose.
             //color: Colors.redAccent,
-            height: Responsive.height(55, context),
+            height: DimensionsGetx.pageView,
             //height: 320,
             //Using page view to build a slider.
             child: PageView.builder(
@@ -53,6 +73,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             ),
           ),
         ),
+        SizedBox(height: DimensionsGetx.height30),
         //Dots
         DotsIndicator(
           dotsCount: 5,
@@ -65,15 +86,15 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 borderRadius: BorderRadius.circular(5.0)),
           ),
         ),
-        SizedBox(height: Responsive.height(5, context)),
+        SizedBox(height: DimensionsGetx.height30),
         //Showing middle text
         Container(
-          margin: EdgeInsets.only(left: Responsive.height(4.5, context)),
+          margin: EdgeInsets.only(left: DimensionsGetx.width15),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               BigText(text: 'Recommendations'),
-              SizedBox(width: Responsive.width(2.5, context)),
+              SizedBox(width: DimensionsGetx.width15),
               Container(
                 margin:
                     EdgeInsets.only(bottom: Responsive.height(0.5, context)),
@@ -82,7 +103,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   color: Colors.black26,
                 ),
               ),
-              SizedBox(width: Responsive.width(2.8, context)),
+              SizedBox(width: DimensionsGetx.width10),
               Container(
                 margin:
                     EdgeInsets.only(bottom: Responsive.height(0.2, context)),
@@ -91,7 +112,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             ],
           ),
         ),
-        SizedBox(height: Responsive.height(4, context)),
+        SizedBox(height: DimensionsGetx.height30),
         //Showing food list vertically.
         ListView.builder(
             physics: NeverScrollableScrollPhysics(),
@@ -108,15 +129,19 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   );
                 },
                 child: Container(
-                  margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
+                  margin: EdgeInsets.only(
+                      left: DimensionsGetx.width10,
+                      right: DimensionsGetx.width10,
+                      bottom: DimensionsGetx.height10),
                   child: Row(
                     children: [
                       //Image section.
                       Container(
-                        width: Responsive.width(32, context),
-                        height: Responsive.height(19, context),
+                        width: DimensionsGetx.listViewImgSize,
+                        height: DimensionsGetx.listViewImgSize,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius:
+                              BorderRadius.circular(DimensionsGetx.radius15),
                           color: Colors.white38,
                           image: DecorationImage(
                             fit: BoxFit.cover,
@@ -128,26 +153,28 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       //Expanded widget takes all the available space.
                       Expanded(
                         child: Container(
-                          height: Responsive.height(17, context),
+                          height: DimensionsGetx.listViewTextContainerSize,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(20),
-                              bottomRight: Radius.circular(20),
+                              topRight:
+                                  Radius.circular(DimensionsGetx.radius15),
+                              bottomRight:
+                                  Radius.circular(DimensionsGetx.radius15),
                             ),
                             color: Colors.white,
                           ),
                           child: Padding(
-                            padding: EdgeInsets.only(left: 10, right: 10),
+                            padding: EdgeInsets.only(
+                                left: DimensionsGetx.width10,
+                                right: DimensionsGetx.width10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 BigText(text: 'Mutton Handi'),
-                                SizedBox(
-                                    height: Responsive.height(1.8, context)),
+                                SizedBox(height: DimensionsGetx.height10),
                                 SmallText(text: 'With all characteristics'),
-                                SizedBox(
-                                    height: Responsive.height(1.5, context)),
+                                SizedBox(height: DimensionsGetx.height10),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -190,11 +217,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       children: [
         //Fist big container with the image.
         Container(
-          height: Responsive.height(34, context),
+          height: DimensionsGetx.pageViewContainer,
           //height: 220,
           margin: EdgeInsets.only(
-              left: Responsive.height(1.5, context),
-              right: Responsive.height(1.5, context)),
+              left: DimensionsGetx.width10, right: DimensionsGetx.width10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             //Using two colors with the help of ternary operator.
@@ -210,15 +236,16 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           alignment: Alignment.bottomCenter,
           //Second container for dish rating and reviews.
           child: Container(
-            height: Responsive.height(21, context),
+            height: DimensionsGetx.pageViewText,
             //height: 120,
             margin: EdgeInsets.only(
-                left: Responsive.height(3, context),
-                right: Responsive.height(3, context),
-                bottom: Responsive.height(3, context)),
+              left: DimensionsGetx.width20,
+              right: DimensionsGetx.width20,
+              bottom: DimensionsGetx.height10,
+            ),
             //using decoration box to round the container from the edges and give it a color.
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(DimensionsGetx.radius15),
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
@@ -230,15 +257,16 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             ),
             child: Padding(
               padding: EdgeInsets.only(
-                  top: Responsive.height(3, context),
-                  left: Responsive.height(3, context),
-                  right: Responsive.height(3, context)),
+                top: DimensionsGetx.height10,
+                left: DimensionsGetx.width10,
+                right: DimensionsGetx.width10,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //1st section of the 2nd container.
                   BigText(text: 'Sindhi Mutton Biryani Masala'),
-                  SizedBox(height: Responsive.height(1.5, context)),
+                  SizedBox(height: DimensionsGetx.height10),
                   //2nd section of the 2nd container.
                   Row(
                     //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -253,15 +281,15 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                           ),
                         ),
                       ),
-                      SizedBox(width: Responsive.width(2.5, context)),
+                      SizedBox(width: DimensionsGetx.width10),
                       SmallText(text: '4.5'),
-                      SizedBox(width: Responsive.width(2.5, context)),
+                      SizedBox(width: DimensionsGetx.width10),
                       SmallText(text: '1297'),
-                      SizedBox(width: Responsive.width(2.5, context)),
+                      SizedBox(width: DimensionsGetx.width10),
                       SmallText(text: 'Comments'),
                     ],
                   ),
-                  SizedBox(height: Responsive.height(3.5, context)),
+                  SizedBox(height: DimensionsGetx.height10),
                   //3rd section of the 2nd container.
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
