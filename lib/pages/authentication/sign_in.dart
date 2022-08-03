@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant_application/pages/authentication/reset_password.dart';
 import 'package:restaurant_application/pages/authentication/sign_up.dart';
 import 'package:restaurant_application/pages/home/bottom_navigation/bottom_navgivation_bar.dart';
+import 'package:restaurant_application/pages/user_detail/registration_user_detail.dart';
 import 'package:restaurant_application/services/auth.dart';
 import 'package:restaurant_application/utils/colors.dart';
 import 'package:restaurant_application/utils/dimension_getx.dart';
@@ -145,7 +148,7 @@ class _SignInState extends State<SignIn> {
                     Container(
                       height: DimensionsGetx.height45,
                       margin: EdgeInsets.only(
-                        left: DimensionsGetx.screenWidth/2,
+                        left: DimensionsGetx.screenWidth / 2,
                       ),
                       decoration: BoxDecoration(
                           // color: Colors.yellowAccent,

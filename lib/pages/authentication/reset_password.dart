@@ -11,6 +11,7 @@ import 'package:restaurant_application/widgets/bigtext.dart';
 import 'package:restaurant_application/widgets/inputdecoration_form.dart';
 import 'package:restaurant_application/widgets/loading.dart';
 import 'package:restaurant_application/widgets/smalltext.dart';
+import 'package:get/get.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({Key? key}) : super(key: key);
@@ -87,7 +88,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   child: ElevatedButton.icon(
                     onPressed: () async {
                       await _auth.signOut();
-                      Navigator.pop(context);
+                      Get.back();
                     },
                     icon: Icon(Icons.arrow_back),
                     label: Text('Go Back'),

@@ -56,7 +56,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           BottomNavigationBarItem(
             icon: AppIcon(
               icon: Icons.person,
-              size: 20,
+
               iconColor: CustomColors.mainAppColor,
             ),
             label: 'Profile',

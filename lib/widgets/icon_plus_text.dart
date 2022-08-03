@@ -21,9 +21,10 @@ class IconPlusText extends StatelessWidget {
         Icon(
           icon,
           color: iconColor,
+          size: 12,
         ),
         SizedBox(width: DimensionsGetx.width10),
-        SmallText(text: text),
+        SmallText(text: text, size: 14),
       ],
     );
   }
