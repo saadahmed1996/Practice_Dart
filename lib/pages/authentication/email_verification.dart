@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:restaurant_application/pages/authentication/authrizer.dart';
 import 'package:restaurant_application/pages/home/bottom_navigation/bottom_navgivation_bar.dart';
-import 'package:restaurant_application/pages/user_detail/registration_user_detail.dart';
+import 'package:restaurant_application/pages/user_profile/user_detail_registration.dart';
 import 'package:restaurant_application/services/auth.dart';
 import 'package:restaurant_application/utils/colors.dart';
 import 'package:restaurant_application/utils/dimensions.dart';
@@ -153,6 +155,7 @@ class _EmailVerificationState extends State<EmailVerification> {
                         ),
                         onPressed: () {
                           _auth.signOut();
+                          Get.offAll(Authrizer());
                         },
                         child: SmallText(
                             text: 'Cancel',

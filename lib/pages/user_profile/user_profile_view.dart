@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurant_application/pages/user_detail/registration_user_detail.dart';
+import 'package:get/get.dart';
+import 'package:restaurant_application/pages/authentication/authrizer.dart';
+
 import 'package:restaurant_application/protector.dart';
 import 'package:restaurant_application/services/auth.dart';
 import 'package:restaurant_application/utils/colors.dart';
@@ -11,6 +13,9 @@ import 'package:restaurant_application/widgets/bigtext.dart';
 import 'package:restaurant_application/widgets/icon_plus_text.dart';
 import 'package:restaurant_application/widgets/loading.dart';
 import 'package:restaurant_application/widgets/smalltext.dart';
+
+import 'user_detail_registration.dart';
+import 'user_profile_update.dart';
 
 class UpdateUserDetail extends StatefulWidget {
   const UpdateUserDetail({Key? key}) : super(key: key);
@@ -104,7 +109,10 @@ class _UpdateUserDetailState extends State<UpdateUserDetail> {
                             children: [
                               BigText(text: 'User Profile'),
                               ElevatedButton.icon(
-                                onPressed: () => auth.signOut(),
+                                onPressed: () {
+                                  auth.signOut();
+                                  Get.offAll(() => Protector());
+                                },
                                 icon: Icon(Icons.logout),
                                 label: Text('LOGOUT'),
                                 style: ElevatedButton.styleFrom(
@@ -115,7 +123,9 @@ class _UpdateUserDetailState extends State<UpdateUserDetail> {
                                 width: DimensionsGetx.width10,
                               ),
                               ElevatedButton.icon(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Get.to(() => UserProfileUpdate());
+                                },
                                 icon: Icon(Icons.edit),
                                 label: Text('EDIT PROFILE'),
                                 style: ElevatedButton.styleFrom(

@@ -3,7 +3,6 @@ import 'package:restaurant_application/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
 
-
 class AuthServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -47,7 +46,7 @@ class AuthServices {
       return null;
     }
   }
- 
+
   //Reset Password
   Future resetPassword(String email) async {
     await _auth.sendPasswordResetEmail(email: email);
@@ -56,7 +55,6 @@ class AuthServices {
   //signout function
   Future signOut() async {
     try {
-      Get.back();
       return await _auth.signOut();
     } catch (e) {
       print(e.toString());

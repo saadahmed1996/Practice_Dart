@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_application/pages/food/popular_food_detail.dart';
 import 'package:restaurant_application/pages/food/recommended_food_detail.dart';
 import 'package:restaurant_application/pages/home/main_food_body.dart';
+import 'package:restaurant_application/pages/user_profile/user_profile_view.dart';
 import 'package:restaurant_application/utils/colors.dart';
 import 'package:restaurant_application/widgets/app_icon.dart';
-
-import '../../user_detail/user_profile.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -40,7 +39,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
           BottomNavigationBarItem(
             icon: AppIcon(
               icon: Icons.circle,
-
               iconColor: CustomColors.mainAppColor,
             ),
             label: 'Recommended',
@@ -48,7 +46,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
           BottomNavigationBarItem(
             icon: AppIcon(
               icon: Icons.business,
-
               iconColor: CustomColors.mainAppColor,
             ),
             label: 'Popular',
@@ -56,7 +53,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
           BottomNavigationBarItem(
             icon: AppIcon(
               icon: Icons.person,
-
               iconColor: CustomColors.mainAppColor,
             ),
             label: 'Profile',

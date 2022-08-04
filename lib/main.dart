@@ -7,6 +7,7 @@ import 'package:restaurant_application/services/auth.dart';
 import 'models/user_model.dart';
 import 'package:get/get.dart';
 
+import 'pages/user_profile/user_profile_update.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();

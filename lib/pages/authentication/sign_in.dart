@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:restaurant_application/pages/authentication/reset_password.dart';
 import 'package:restaurant_application/pages/authentication/sign_up.dart';
 import 'package:restaurant_application/pages/home/bottom_navigation/bottom_navgivation_bar.dart';
-import 'package:restaurant_application/pages/user_detail/registration_user_detail.dart';
 import 'package:restaurant_application/services/auth.dart';
 import 'package:restaurant_application/utils/colors.dart';
 import 'package:restaurant_application/utils/dimension_getx.dart';
@@ -111,18 +111,14 @@ class _SignInState extends State<SignIn> {
                             //Called when the user initiates a change to the
                             //TextField's value: when they have inserted or deleted text.
                             onChanged: (value) {
-                              setState(() => email = value);
+                              if (mounted) {
+                                setState(() => email = value);
+                              }
                             },
                           ),
                           SizedBox(
                             height: Responsive.height(4, context),
                           ),
-                          // CustomTextField(
-                          //   isPassword: true,
-                          //   text: 'Enter Your Password',
-                          //   icon: Icons.lock,
-                          //   hintText: 'Enter Your Password',
-                          // ),
                           TextFormField(
                             decoration: textInputDecoration.copyWith(
                                 hintText: 'Password'),
@@ -136,7 +132,9 @@ class _SignInState extends State<SignIn> {
                             //Called when the user initiates a change to the
                             //TextField's value: when they have inserted or deleted text.
                             onChanged: (value) {
-                              setState(() => password = value);
+                              if (mounted) {
+                                setState(() => password = value);
+                              }
                             },
                             obscureText: true,
                           ),
@@ -155,12 +153,7 @@ class _SignInState extends State<SignIn> {
                           ),
                       child: TextButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ResetPassword(),
-                            ),
-                          );
+                          Get.to(() => ResetPassword());
                         },
                         child: Text(
                           'Forgot Password?',
@@ -190,9 +183,9 @@ class _SignInState extends State<SignIn> {
                               });
                               dynamic result = await _auth
                                   .signInWithEmailAndPassword(email, password);
-                              SharedPreferences pref =
-                                  await SharedPreferences.getInstance();
-                              pref.setString('email', email);
+                              // SharedPreferences pref =
+                              //     await SharedPreferences.getInstance();
+                              // pref.setString('email', email);
                               if (result == null) {
                                 setState(() {
                                   error = 'Wrong Email & Password';
@@ -200,16 +193,6 @@ class _SignInState extends State<SignIn> {
                                 });
                               }
                             }
-                            // //Saving it in result variable.
-                            // dynamic result = await _auth.signInAnon();
-                            // //if the result is null then there is somethign went wrong.
-                            // if (result == null) {
-                            //   print('User Signed in');
-                            //   //showing auto generated user id in the terminal.
-                            //   print(result.uid);
-                            // } else {
-                            //   print('Error while signing in');
-                            // }
                           },
                           child: SmallText(
                             text: 'LOGIN',
@@ -246,12 +229,6 @@ class _SignInState extends State<SignIn> {
                           TextButton(
                             onPressed: () {
                               widget.toggleView();
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) => SignUp(),
-                              //   ),
-                              // );
                             },
                             child: SmallText(
                               text: 'Create',

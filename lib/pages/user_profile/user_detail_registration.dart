@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:restaurant_application/pages/home/bottom_navigation/bottom_navgivation_bar.dart';
+import 'package:restaurant_application/protector.dart';
 import 'package:restaurant_application/services/auth.dart';
 import 'package:restaurant_application/utils/colors.dart';
 import 'package:restaurant_application/utils/dimension_getx.dart';
@@ -23,6 +24,7 @@ class RegistrationUserDetail extends StatefulWidget {
 }
 
 class _RegistrationUserDetailState extends State<RegistrationUserDetail> {
+  var userDataUploadedCompleted = '';
   bool userProfileUpdated = false;
   bool loading = false;
   final AuthServices _auth = AuthServices();
@@ -89,6 +91,7 @@ class _RegistrationUserDetailState extends State<RegistrationUserDetail> {
                     onPressed: () {
                       //by pressing the back button current user will sign out from the applciation so the next user can register or sign in.
                       _auth.signOut();
+                      Get.offAll(() => Protector());
                     },
                   ),
                 ),
@@ -222,14 +225,21 @@ class _RegistrationUserDetailState extends State<RegistrationUserDetail> {
                       child: SizedBox(
                         height: DimensionsGetx.height45,
                         child: ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
+                            setState(() {
+                              loading = true;
+                            });
                             final User? user = auth.currentUser;
                             final uid = user!.uid;
                             if (uid != null) {
-                              uploadFile();
-                              Get.to(
-                                BottomNavBar(),
-                              );
+                              final result = await uploadFile();
+                              if (result != false) {
+                                loading = false;
+                                Get.to(() => BottomNavBar());
+                              } else {
+                                Get.snackbar(
+                                    'Error', 'Error Saving User Info!');
+                              }
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
@@ -260,18 +270,16 @@ class _RegistrationUserDetailState extends State<RegistrationUserDetail> {
   }
 
   //For Uploading file from mobile gallery to firebase, It will show image on the ClipRRect
-  Future uploadFile() async {
-    String? uploadedFileURL;
-    Reference storageReference = FirebaseStorage.instance
-        .ref()
-        .child('userprofile/${Path.basename(imageFile!.path)}}');
-    UploadTask uploadTask = storageReference.putFile(imageFile!);
-    uploadTask.whenComplete(() {
-      storageReference.getDownloadURL().then((fileURL) async {
-        setState(() {
-          uploadedFileURL = fileURL.toString();
-          print(uploadedFileURL);
-        });
+  Future<bool> uploadFile() async {
+    try {
+      String? uploadedFileURL;
+      Reference storageReference = FirebaseStorage.instance
+          .ref()
+          .child('userprofile/${Path.basename(imageFile!.path)}}');
+      UploadTask uploadTask = storageReference.putFile(imageFile!);
+      final result = await uploadTask;
+      if (result.state == TaskState.success) {
+        uploadedFileURL = (await storageReference.getDownloadURL()).toString();
         final User? user = auth.currentUser;
         final uid = user!.uid;
         await FirebaseFirestore.instance
@@ -283,11 +291,12 @@ class _RegistrationUserDetailState extends State<RegistrationUserDetail> {
           'Phone': phoneNo.text,
           'imageUrl': uploadedFileURL,
         });
-        print(uploadedFileURL.toString());
-      });
-    }).catchError((onError) {
-      print(onError);
-    });
+      }
+      return true;
+    } catch (e) {
+      print(e.toString());
+      return false;
+    }
   }
 
   //Image Picker will work as swticher (as Camera and Gallery)
