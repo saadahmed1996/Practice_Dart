@@ -3,17 +3,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:restaurant_application/pages/authentication/authrizer.dart';
-
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:restaurant_application/map/google_map.dart';
 import 'package:restaurant_application/protector.dart';
 import 'package:restaurant_application/services/auth.dart';
 import 'package:restaurant_application/utils/colors.dart';
 import 'package:restaurant_application/utils/dimension_getx.dart';
 import 'package:restaurant_application/widgets/bigtext.dart';
-import 'package:restaurant_application/widgets/icon_plus_text.dart';
 import 'package:restaurant_application/widgets/loading.dart';
 import 'package:restaurant_application/widgets/smalltext.dart';
-
 import 'user_detail_registration.dart';
 import 'user_profile_update.dart';
 
@@ -137,20 +135,17 @@ class _UpdateUserDetailState extends State<UpdateUserDetail> {
                         ],
                       ),
                     ),
-
                     SizedBox(
                       height: DimensionsGetx.height20,
                     ),
-
+                    //Box For Total Balance & Food Ordered
                     Container(
                       height: DimensionsGetx.pageViewText,
-                      //height: 120,
                       margin: EdgeInsets.only(
                         left: DimensionsGetx.width20,
                         right: DimensionsGetx.width20,
                         bottom: DimensionsGetx.height10,
                       ),
-                      //using decoration box to round the container from the edges and give it a color.
                       decoration: BoxDecoration(
                         borderRadius:
                             BorderRadius.circular(DimensionsGetx.radius15),
@@ -175,7 +170,6 @@ class _UpdateUserDetailState extends State<UpdateUserDetail> {
                             SizedBox(
                               height: DimensionsGetx.height20,
                             ),
-                            //1st section of the 2nd container.
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -186,7 +180,6 @@ class _UpdateUserDetailState extends State<UpdateUserDetail> {
                             SizedBox(
                               height: DimensionsGetx.height10,
                             ),
-                            //2nd section of the 2nd container.
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -200,18 +193,26 @@ class _UpdateUserDetailState extends State<UpdateUserDetail> {
                         ),
                       ),
                     ),
+                    // Container For Name
                     Container(
                       margin: EdgeInsets.only(
                         left: DimensionsGetx.width20,
                         right: DimensionsGetx.width20,
                         bottom: DimensionsGetx.height10,
                       ),
-                      height: DimensionsGetx.listViewTextContainerSize,
+                      height: DimensionsGetx.userProfileViewContainer,
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                         borderRadius:
                             BorderRadius.circular(DimensionsGetx.radius15),
                         color: CustomColors.mainAppColor,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color.fromARGB(255, 140, 140, 140),
+                            blurRadius: 5.0,
+                            offset: Offset(0, 5),
+                          ),
+                        ],
                       ),
                       child: Padding(
                         padding: EdgeInsets.all(DimensionsGetx.width15),
@@ -224,18 +225,26 @@ class _UpdateUserDetailState extends State<UpdateUserDetail> {
                         ),
                       ),
                     ),
+                    // Container For DOB
                     Container(
                       margin: EdgeInsets.only(
                         left: DimensionsGetx.width20,
                         right: DimensionsGetx.width20,
                         bottom: DimensionsGetx.height10,
                       ),
-                      height: DimensionsGetx.listViewTextContainerSize,
+                      height: DimensionsGetx.userProfileViewContainer,
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                         borderRadius:
                             BorderRadius.circular(DimensionsGetx.radius15),
                         color: CustomColors.mainAppColor,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color.fromARGB(255, 140, 140, 140),
+                            blurRadius: 5.0,
+                            offset: Offset(0, 5),
+                          ),
+                        ],
                       ),
                       child: Padding(
                         padding: EdgeInsets.all(DimensionsGetx.width15),
@@ -248,18 +257,26 @@ class _UpdateUserDetailState extends State<UpdateUserDetail> {
                         ),
                       ),
                     ),
+                    // Container For Phone No
                     Container(
                       margin: EdgeInsets.only(
                         left: DimensionsGetx.width20,
                         right: DimensionsGetx.width20,
                         bottom: DimensionsGetx.height10,
                       ),
-                      height: DimensionsGetx.listViewTextContainerSize,
+                      height: DimensionsGetx.userProfileViewContainer,
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                         borderRadius:
                             BorderRadius.circular(DimensionsGetx.radius15),
                         color: CustomColors.mainAppColor,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color.fromARGB(255, 140, 140, 140),
+                            blurRadius: 5.0,
+                            offset: Offset(0, 5),
+                          ),
+                        ],
                       ),
                       child: Padding(
                         padding: EdgeInsets.all(DimensionsGetx.width15),
@@ -272,6 +289,62 @@ class _UpdateUserDetailState extends State<UpdateUserDetail> {
                         ),
                       ),
                     ),
+                    //address & FAB
+                    Stack(
+                      children: [
+                        //address container with text to show selected address from user.
+                        Container(
+                          margin: EdgeInsets.only(
+                            left: DimensionsGetx.width20,
+                            right: DimensionsGetx.width20,
+                            bottom: DimensionsGetx.height10,
+                          ),
+                          height: DimensionsGetx.userProfileViewContainer,
+                          width: double.maxFinite,
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(DimensionsGetx.radius15),
+                            color: CustomColors.mainAppColor,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromARGB(255, 140, 140, 140),
+                                blurRadius: 5.0,
+                                offset: Offset(0, 5),
+                              ),
+                            ],
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(DimensionsGetx.width15),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                'Address: ',
+                                style: TextStyle(
+                                    fontSize: 24, color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                        //Floating Action Button for user to open map and select his current lcoation from the map.
+                        Positioned(
+                          top: 10,
+                          right: 0,
+                          child: Container(
+                            margin: EdgeInsets.only(right: DimensionsGetx.width30),
+                            child: FloatingActionButton(
+                              splashColor: Colors.yellow,
+                              foregroundColor: CustomColors.mainAppColor,
+                              backgroundColor: Colors.white,
+                              child: Icon(Icons.location_on),
+                              onPressed: (() => Get.to(
+                                    () => GoogleMapHaiYeh(),
+                                  )),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    //Floating button for user to select his current location.
                   ],
                 ),
         ),

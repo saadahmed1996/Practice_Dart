@@ -56,4 +56,7 @@ class DimensionsGetx {
   //bottom height
   static double bottomHeightBar = screenHeight / 6.09;
 
+  //User Profile View Container
+  static double userProfileViewContainer = screenHeight / 9.75;
+
 }

@@ -45,9 +45,7 @@ class _UserProfileUpdateState extends State<UserProfileUpdate> {
               title: Text('Profile Setup'),
               leading: BackButton(
                 onPressed: () {
-                  //by pressing the back button current user will sign out from the applciation so the next user can register or sign in.
-                  _auth.signOut();
-                  Get.offAll(() => Protector());
+                  Get.back();
                 },
               ),
             ),
